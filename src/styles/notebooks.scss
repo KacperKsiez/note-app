@@ -1,0 +1,120 @@
+.notebooks,
+.notes {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+
+	z-index: 10;
+
+	background-color: $dark;
+	color: white;
+	width: 250px;
+
+	@media (max-width: 500px) {
+		width: 100%;
+	}
+
+	padding: 0em 2em;
+	display: flex;
+	flex-direction: column;
+	transition: 0.5s;
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 700;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		margin-bottom: 1em;
+	}
+
+	&__btn {
+		background-color: transparent !important;
+		color: white !important;
+
+		&-show-notes {
+			margin-top: auto;
+			margin-left: auto;
+			margin-bottom: 0;
+			padding-left: 14px !important;
+			margin-bottom: 0.5em;
+			justify-content: end;
+			@media (max-width: 500px) {
+				display: none !important;
+			}
+		}
+
+		&:hover {
+			background-color: $darker !important;
+		}
+	}
+
+	&__icon {
+		&--big {
+			font-size: 1.4em;
+		}
+	}
+
+	&__list {
+		margin: 2em 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+
+		&-item {
+			display: flex;
+			align-items: center;
+			gap: 0.5em;
+			transition: 0.2s;
+			padding: 0.3em 0.5em;
+			border-radius: 10px;
+			font-weight: 300;
+
+			&-length {
+				margin-left: auto;
+			}
+
+			&-text {
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+
+			&:hover {
+				background-color: $darker;
+				cursor: pointer;
+			}
+
+			&--active {
+				font-weight: 600;
+			}
+		}
+	}
+
+	&__bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		position: sticky;
+		bottom: 0;
+
+		padding-bottom: 1em;
+
+		background-color: $dark;
+
+		@media (max-width: 500px) {
+			margin-top: auto;
+		}
+
+		&-count {
+			font-size: 0.8em !important;
+		}
+	}
+
+	&--hidden {
+		transform: translateX(-100%);
+	}
+}

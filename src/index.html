@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<button class="btn show-notebooks">
+			<i class="icon bi bi-caret-right-fill"></i>
+		</button>
+
+		<!-- FIRST NAV - NOTEBOOKS ARE HERE -->
+		<nav class="notebooks">
+			<!-- TOP PART OF FIRST NAV -->
+			<div class="notebooks__top">
+				<i class="icon notebooks__icon notebooks__icon--big">N</i>
+				<div class="notebooks__top-text">Saved</div>
+				<button class="btn notebooks__btn notebooks__btn-add">
+					<i class="icon notebooks__icon bi bi-plus-lg notebooks__icon--big"></i>
+				</button>
+			</div>
+
+			<!-- Search over notes in notebooks -->
+			<input type="text" class="input-text notebooks__search-input" placeholder="Quick Search..." />
+
+			<!-- List of notebooks -->
+			<ul class="notebooks__list">
+				<li class="notebooks__list-item notebooks__list-item--active">
+					<!-- ICON -->
+					<i class="notebooks__list-item-icon icon bi bi-caret-right-fill"></i>
+					<!-- TEXT -->
+					<div class="notebooks__list-item-text">Notatnik długa że overflow 1</div>
+					<!-- COUNTED NOTES -->
+					<div class="notebooks__list-item-length text-small-gray">10</div>
+				</li>
+				<li class="notebooks__list-item">
+					<i class="notebooks__list-item-icon icon bi bi-caret-right-fill"></i>
+					<div class="notebooks__list-item-text">Notepad 2</div>
+					<div class="notebooks__list-item-length text-small-gray">20</div>
+				</li>
+				<li class="notebooks__list-item">
+					<i class="notebooks__list-item-icon icon bi bi-caret-right-fill"></i>
+					<div class="notebooks__list-item-text">Notepad 3</div>
+					<div class="notebooks__list-item-length text-small-gray">30</div>
+				</li>
+			</ul>
+
+			<div class="btn btn--center notebooks__btn notebooks__btn-show-notes">
+				<span class="btn__text">Notes</span>
+				<i class="icon notebooks__icon bi bi-caret-right-fill"></i>
+			</div>
+
+			<!-- BOTTOM OF NOTEBOOKS DIV -->
+			<div class="notebooks__bottom">
+				<!-- SETTINGS BTN -->
+				<button class="btn notebooks__btn notebooks__btn-settings"><i class="icon notebooks__icon bi bi-gear-fill"></i></button>
+				<!-- COUNTED NOTEBOOKS -->
+				<span class="notebooks__bottom-count text-small-gray">Saved 3</span>
+				<!-- HIDE MENU BTN -->
+				<button class="btn notebooks__btn notebooks__btn-hide"><i class="icon notebooks__icon bi bi-caret-left-fill"></i></button>
+			</div>
+		</nav>
+
+		<!-- NOTES LIST OF NOTEBOOK -->
+		<nav class="notes">
+			<div class="notes__top">
+				<div class="text-small-gray--dark text-small-gray">You now looking</div>
+				<div class="notes__top-notebook">Notebook 1</div>
+			</div>
+
+			<input type="text" placeholder="Search over notes" class="notes__search-input input-text" />
+
+			<ul class="notes__list">
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 7</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 7</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 7</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 7</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+				<li class="notes__list-item">
+					<label><input type="checkbox" class="notes__list-item-checkbox" /> <span class="notes__list-item-text">Notatka nr 8</span></label>
+					<span class="notes__list-item-edit-date text-small-gray--dark text-small-gray">10.10.2022 - 21:37</span>
+				</li>
+			</ul>
+
+			<div class="notes__bottom">
+				<!-- SETTINGS BTN -->
+				<button class="btn notes__btn notes__btn-settings"><i class="icon notes__icon bi bi-pen"></i></button>
+				<span class="notes__bottom-count text-small-gray--dark text-small-gray">Saved 3</span>
+				<!-- HIDE MENU BTN -->
+				<button class="btn notes__btn notes__btn-hide"><i class="icon notes__icon bi bi-caret-left"></i></button>
+			</div>
+		</nav>
+		<main class="note">
+			<div class="note__title"></div>
+		</main>
+	</body>
+</html>

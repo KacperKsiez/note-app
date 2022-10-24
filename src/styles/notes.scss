@@ -1,0 +1,67 @@
+.notes {
+	background-color: $whiteDark;
+	color: $dark;
+	left: min(100%, 250px);
+	overflow-y: scroll;
+	z-index: 9;
+
+	&__top {
+		flex-direction: column;
+		gap: 0.3em;
+
+		position: sticky;
+		background-color: $whiteDark;
+		z-index: 10;
+		top: 0;
+
+		&-notebook {
+			font-size: 1.3em;
+		}
+	}
+	&__btn {
+		background-color: transparent;
+
+		&:hover {
+			background-color: $gray !important;
+		}
+	}
+	&__icon {
+		color: $dark !important;
+	}
+
+	&__list {
+		&-item {
+			position: relative;
+			height: 3em;
+			padding-bottom: 0.6em;
+			justify-content: center;
+			&-edit-date {
+				position: absolute;
+				bottom: 4px;
+				left: 0;
+				right: 0;
+				text-align: center;
+			}
+
+			&:hover {
+				background-color: $gray;
+			}
+		}
+	}
+	&__bottom {
+		margin-top: auto;
+		background-color: $whiteDark;
+	}
+	&--hidden {
+		transform: translateX(-200%);
+	}
+	&--half {
+		transform: translateX(-100%);
+		@media (max-width: 500px) {
+			transform: translateX(-100vw);
+		}
+	}
+	@media (max-width: 500px) {
+		left: 100vw;
+	}
+}

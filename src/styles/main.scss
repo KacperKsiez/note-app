@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic");
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import "./variables.scss";
+
+@import "./notebooks.scss";
+@import "./notes.scss";
+
+@import "./fixedElements.scss";
+
+* {
+	font-family: "Open Sans", sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.btn {
+	background: 0;
+	outline: 0;
+	border: 0;
+	transition: 0.2s;
+	cursor: pointer;
+	font-size: 1.1em;
+	padding: 7px;
+	border-radius: 10px;
+	background-color: $whiteDark;
+	color: $dark;
+
+	-webkit-tap-highlight-color: transparent;
+
+	align-items: center;
+
+	&:hover {
+		background-color: $dark;
+		color: $white;
+	}
+
+	&__text {
+		font-size: 0.8em;
+	}
+
+	&--center {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.input-text {
+	padding: 0.8em 1.6em;
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid transparent;
+	outline: 0;
+	font-size: 0.9em;
+
+	&:focus {
+		border-color: royalblue;
+	}
+}
+
+.text-small-gray {
+	font-size: 0.7em;
+	color: $gray;
+	&--dark {
+		color: $grayDark;
+	}
+}
+
+.icon {
+	padding: 7px;
+}
