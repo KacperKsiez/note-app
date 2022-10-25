@@ -6,16 +6,18 @@ class NotebooksList {
 	}
 
 	makeActive(which) {
-		const activeName = DOMString.firstNav.itemActive;
+		const itemIndex = 3;
+		const activeClassName = DOMString.firstNav.itemActive;
 
-		this.itemList.forEach((item) => {
-			item = item[3];
-			item.classList.remove(activeName);
+		this.itemList.forEach((itemGroup) => {
+			const item = itemGroup[itemIndex];
+
+			item.classList.remove(activeClassName);
 		});
 
-		const item = this.itemList[which][3];
+		const item = this.itemList[which][itemIndex];
 
-		item.classList.add(activeName);
+		item.classList.add(activeClassName);
 	}
 
 	updateItems() {
@@ -34,3 +36,6 @@ class NotebooksList {
 
 let a = new NotebooksList();
 a.updateItems();
+a.makeActive(0);
+a.makeActive(1);
+a.makeActive(2);
