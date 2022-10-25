@@ -1,102 +1,96 @@
 import DOMString from "./divNames";
 
 class NavSwitcher {
-	// ! NOTEBOOK
-	notebooksHidden = false;
-	notesHidden = "full";
-
-	private notebooks = document.querySelector(DOMString.firstNav.main);
-	private notebookHideBtn = document.querySelector(DOMString.firstNav.hideBtn);
-
-	private notebooksShowBtn = document.querySelector(DOMString.global.showNotebooksBtn);
-
-	// ! NOTES
-	private notes = document.querySelector(DOMString.secondNav.main);
-	private showNotesBtn = document.querySelector(DOMString.firstNav.notesBtn);
-	private notesHideBtn = document.querySelector(DOMString.secondNav.hideBtn);
+	// NAVS
+	private firstNav = document.querySelector(DOMString.firstNav.main);
+	private secondNav = document.querySelector(DOMString.secondNav.main);
+	// BUTTONS
+	private showFirstNavBtn = document.querySelector(DOMString.global.showNotebooksBtn);
+	private hideFirstNavBtn = document.querySelector(DOMString.firstNav.hideBtn);
+	private hideSecondNavBtn = document.querySelector(DOMString.secondNav.hideBtn);
+	private showSecondNavBtn = document.querySelector(DOMString.firstNav.notesBtn);
+	// STATUS
+	private statFirst = "show";
+	private statSecond = "show";
 
 	constructor() {
-		this.notebookHideBtn.addEventListener("click", () => {
-			this.switchFirst(false);
-		});
-		this.notebooksShowBtn.addEventListener("click", () => {
-			this.switchFirst(true);
-		});
-		this.notesHideBtn.addEventListener("click", () => {
-			this.switchSecond("half");
-		});
+		this.hideFirstNavBtn.addEventListener("click", this.recognizeHideFirst);
+		this.showFirstNavBtn.addEventListener("click", this.recognizeShowFirst);
 
-		this.showNotesBtn.addEventListener("click", () => {
-			this.switchSecond("full");
-		});
-
-		if (window.innerWidth <= 500) {
-			this.switchSecond("hidden");
-		}
+		this.hideSecondNavBtn.addEventListener("click", this.recognizeHideSecond);
+		this.showSecondNavBtn.addEventListener("click", this.showSecondNav);
 	}
 
-	switchFirst = (show: boolean) => {
-		// CHOWIEMY FIRST NAVA
-		if (!show) {
-			// ! NA TEL CHYBA
-
-			if (this.notesHidden == "half") {
-				this.switchSecond("hidden");
-				this.notebooks.classList.add(DOMString.firstNav.mainHidden);
-			} else {
-				if (this.notesHidden == "hidden") {
-					this.notebooks.classList.add(DOMString.firstNav.mainHidden);
-					this.toggleShowBtn();
-
-					return;
-				}
-				this.notebooks.classList.add(DOMString.firstNav.mainHidden);
-				this.switchSecond("half");
-			}
-			this.toggleShowBtn();
-			this.notebooksHidden = true;
+	recognizeHideFirst = () => {
+		const { statFirst, statSecond } = this;
+		if (statFirst == "show" && statSecond == "show") {
+			this.halfHideSecondNav();
+			this.hideFirstNav();
 		}
-		// POKAZUJEMY FIRST NAVA
-		else {
-			if (this.notesHidden == "hidden") {
-				this.notebooks.classList.remove(DOMString.firstNav.mainHidden);
-				this.toggleShowBtn();
-			}
-
-			if (this.notesHidden == "half") {
-				this.notebooks.classList.remove(DOMString.firstNav.mainHidden);
-				this.toggleShowBtn();
-				this.switchSecond("full");
-			}
-			this.notebooksHidden = false;
+		if (statFirst == "show" && statSecond == "half hidden") {
+			this.hideSecondNav();
+			this.hideFirstNav();
+		}
+		if (statFirst == "show" && statSecond == "hidden") {
+			this.hideFirstNav();
 		}
 	};
-	switchSecond = (show: string) => {
-		if (show == "half") {
-			if (this.notebooksHidden == true) {
-				this.switchSecond("hidden");
 
-				return;
-			}
-
-			this.notesHidden = "half";
-			this.notes.classList.add(DOMString.secondNav.mainHalfHidden);
+	recognizeHideSecond = () => {
+		const { statFirst, statSecond } = this;
+		if (statFirst == "hidden") {
+			this.hideSecondNav();
 		}
-
-		if (show == "full") {
-			this.notesHidden = "full";
-			this.notes.classList.remove(DOMString.secondNav.mainHalfHidden);
-			this.notes.classList.remove(DOMString.secondNav.mainHidden);
-		}
-		if (show == "hidden") {
-			this.notesHidden = "hidden";
-			this.notes.classList.remove(DOMString.secondNav.mainHalfHidden);
-			this.notes.classList.add(DOMString.secondNav.mainHidden);
+		if (statFirst == "show") {
+			this.halfHideSecondNav();
 		}
 	};
-	toggleShowBtn = () => {
-		this.notebooksShowBtn.classList.toggle(DOMString.global.showNotebooksShow);
+
+	recognizeShowFirst = () => {
+		const { statFirst, statSecond } = this;
+		console.log("huj");
+
+		if (statFirst == "hidden" && statSecond == "hidden") {
+			this.showFirstNav();
+		}
+		if (statFirst == "hidden" && statSecond == "half hidden") {
+			this.showSecondNav();
+			this.showFirstNav();
+			console.log("DUPA");
+		}
 	};
+
+	hideFirstNav = () => {
+		this.statFirst = "hidden";
+		this.firstNav.classList.add(DOMString.firstNav.mainHidden);
+		this.toggleShowFirst();
+	};
+
+	showFirstNav = () => {
+		this.statFirst = "show";
+		this.firstNav.classList.remove(DOMString.firstNav.mainHidden);
+		this.toggleShowFirst();
+	};
+
+	hideSecondNav = () => {
+		this.statSecond = "hidden";
+		this.secondNav.classList.remove(DOMString.secondNav.mainHalfHidden);
+		this.secondNav.classList.add(DOMString.secondNav.mainHidden);
+	};
+
+	halfHideSecondNav = () => {
+		this.statSecond = "half hidden";
+		this.secondNav.classList.remove(DOMString.secondNav.mainHidden);
+		this.secondNav.classList.add(DOMString.secondNav.mainHalfHidden);
+	};
+
+	showSecondNav = () => {
+		this.statSecond = "show";
+		this.secondNav.classList.remove(DOMString.secondNav.mainHidden);
+		this.secondNav.classList.remove(DOMString.secondNav.mainHalfHidden);
+	};
+
+	toggleShowFirst = () => this.showFirstNavBtn.classList.toggle(DOMString.global.showNotebooksShow);
 }
 
 const a = new NavSwitcher();

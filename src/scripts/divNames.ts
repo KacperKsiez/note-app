@@ -4,12 +4,15 @@ const DOMString = {
 		showNotebooksShow: "show-notebooks--show",
 		showNotebooksBottom: "show-notebooks--bottom",
 	},
+
 	firstNav: {
 		main: ".notebooks",
 		mainHidden: "notebooks--hidden",
 		addBtn: ".notebooks__btn-add",
 		searchInput: ".notebooks__search-input",
 		list: ".notebooks__list",
+
+		itemActive: "notebooks__list-item--active",
 
 		item: ".notebooks__list-item",
 		itemIcon: ".notebooks__list-item-icon",
