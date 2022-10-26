@@ -24,6 +24,13 @@ const DOMString = {
 		hideBtn: ".notebooks__btn-hide",
 
 		count: ".notebooks__bottom-count",
+
+		itemClassNames: {
+			itemNames: ["notebooks__list-item"],
+			iconNames: ["notebooks__list-item-icon", "icon", "bi", "bi-caret-right-fill"],
+			textNames: ["notebooks__list-item-text"],
+			lengthNames: ["notebooks__list-item-length", "text-small-gray"],
+		},
 	},
 
 	secondNav: {
@@ -35,6 +42,8 @@ const DOMString = {
 		searchInput: ".notes__search-input",
 
 		list: ".notes__list",
+
+		itemActive: "notes__list-item--active",
 
 		item: ".notes__list-item",
 		itemCheckbox: ".notes__list-item-checkbox",

@@ -46,6 +46,21 @@
 			&:hover {
 				background-color: $gray;
 			}
+
+			&--active {
+				position: relative;
+				&::before {
+					content: "Selected";
+					position: absolute;
+
+					top: 0;
+					left: 0;
+					right: 0;
+					font-weight: 300;
+					font-size: 0.75em;
+					text-align: center;
+				}
+			}
 		}
 	}
 	&__bottom {
