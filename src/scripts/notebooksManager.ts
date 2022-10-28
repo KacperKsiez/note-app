@@ -3,14 +3,14 @@ import DOMString from "./divNames";
 class NotebooksList {
 	private itemList: Array<any>;
 	private listDiv = document.querySelector(DOMString.firstNav.list);
+	private savedCountDiv = document.querySelector(DOMString.firstNav.count);
 
-	private activeId: number;
-
-	private itemIndexes = {
+	public itemIndexes = {
 		icon: 0,
 		text: 1,
 		length: 2,
 		item: 3,
+		id: 4,
 	};
 
 	constructor() {
@@ -55,7 +55,7 @@ class NotebooksList {
 		const lengths = document.querySelectorAll(itemLength);
 
 		this.itemList = items.map((item, num) => {
-			return [icons[num], texts[num], lengths[num], item];
+			return [icons[num], texts[num], lengths[num], item, +item.getAttribute("id")];
 		});
 	}
 
@@ -68,7 +68,7 @@ class NotebooksList {
 		this.refreshItems();
 	}
 
-	addItem(text: string, length: number) {
+	addItem(text: string, length: number, id: number) {
 		const itemScheme = {
 			iconDiv: document.createElement("i"),
 			textDiv: document.createElement("span"),
@@ -93,10 +93,33 @@ class NotebooksList {
 		item.appendChild(itemScheme.textDiv);
 		item.appendChild(itemScheme.lengthDiv);
 		item.classList.add(...DOMString.firstNav.itemClassNames.itemNames);
+		item.setAttribute("id", id.toString());
 
 		this.listDiv.appendChild(item);
 
 		this.refreshItems();
+	}
+
+	updateSaveCountDiv(number: number) {
+		this.savedCountDiv.innerHTML = `Saved ${number}`;
+	}
+
+	getList() {
+		return this.itemList;
+	}
+
+	makeActiveById(id: number) {
+		this.itemList.forEach((itemGroup) => {
+			const item = itemGroup[this.itemIndexes.item];
+			item.classList.remove(DOMString.firstNav.itemActive);
+		});
+
+		this.itemList.forEach((el) => {
+			if (el[this.itemIndexes.id] == id) {
+				const item = el[this.itemIndexes.item];
+				item.classList.add(DOMString.firstNav.itemActive);
+			}
+		});
 	}
 }
 

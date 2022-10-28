@@ -5,6 +5,8 @@
 	overflow-y: scroll;
 	z-index: 9;
 
+	border-right: 1px solid $gray;
+
 	&__top {
 		flex-direction: column;
 		gap: 0.3em;
@@ -34,7 +36,26 @@
 			position: relative;
 			height: 3em;
 			padding-bottom: 0.6em;
-			justify-content: center;
+
+			&-checkbox {
+				position: absolute;
+
+				left: 0;
+				top: 0;
+				bottom: 0;
+				margin-left: 0.5em;
+
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+
+			&-text {
+				overflow: hidden;
+				max-width: calc(186px - 1.5em) !important;
+				margin-left: 1.5em;
+				display: block !important;
+			}
+
 			&-edit-date {
 				position: absolute;
 				bottom: 4px;

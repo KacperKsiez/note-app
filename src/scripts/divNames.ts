@@ -46,6 +46,14 @@ const DOMString = {
 		itemActive: "notes__list-item--active",
 
 		item: ".notes__list-item",
+
+		itemClassNames: {
+			itemNames: ["notes__list-item"],
+			checkboxNames: ["notes__list-item-checkbox"],
+			textNames: ["notes__list-item-text"],
+			dateNames: ["notes__list-item-edit-date", "text-small-gray", "text-small-gray--dark"],
+		},
+
 		itemCheckbox: ".notes__list-item-checkbox",
 		itemText: ".notes__list-item-text",
 		itemEditDate: ".notes__list-item-edit-date",

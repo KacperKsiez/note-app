@@ -1,0 +1,60 @@
+.note {
+	height: 100vh;
+	color: $dark;
+	margin-left: calc($navWidth * 2);
+
+	&__top {
+		position: relative;
+		background-color: $whiteDark;
+		padding: 0.5em;
+		border-bottom: 1px solid $gray;
+		display: flex;
+		align-items: center;
+
+		&-title {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			font-weight: 500;
+
+			overflow: hidden;
+			text-emphasis: ellipsis;
+			white-space: nowrap;
+			padding: 0 3em;
+
+			&-text {
+				font-size: 2em;
+				display: block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+
+		&-date {
+			margin-left: auto;
+			margin-right: 6em;
+			white-space: nowrap;
+
+			color: $grayDark;
+			font-weight: 300;
+			font-size: 0.9em;
+			text-align: center;
+		}
+
+		&-btn--delete {
+			position: absolute;
+
+			top: 50%;
+			transform: translateY(-50%);
+
+			right: 2em;
+		}
+	}
+
+	&__btn {
+		&:hover {
+			background-color: $grayDark !important;
+		}
+	}
+}
