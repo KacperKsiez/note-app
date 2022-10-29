@@ -5,6 +5,11 @@ const DOMString = {
 		showNotebooksBottom: "show-notebooks--bottom",
 	},
 
+	note: {
+		text: ".note__text",
+		title: ".note__top-title-text",
+	},
+
 	firstNav: {
 		main: ".notebooks",
 		mainHidden: "notebooks--hidden",

@@ -2,24 +2,31 @@ import NotesList from "./notesManager";
 import NotebooksList from "./notebooksManager";
 import notes from "./sampleNotes";
 
+import noteControl from "./writeNote";
+
 class Controller {
 	private notesCtrl = new NotesList();
 	private notebookCtrl = new NotebooksList();
+	private noteCtrl = new noteControl();
 
 	private data = notes;
 
 	private IDs = new Map();
+	private firstNotebookID: number;
+
+	private activeNotebookID: number;
 
 	loadIDs() {
 		this.IDs.clear();
 
-		notes.forEach((notebook) => {
+		this.data.forEach((notebook) => {
 			const notebookID = notebook.id;
 			const notesIDs: number[] = notebook.notesList.map((note) => {
 				return note.id;
 			});
 
 			this.IDs.set(notebookID, notesIDs);
+			this.firstNotebookID = this.IDs.entries().next().value;
 		});
 	}
 
@@ -27,10 +34,11 @@ class Controller {
 		this.loadNotebooks();
 		this.notebookCtrl.makeActive(0);
 
+		this.loadIDs();
 		this.eventsForNotebookListItems();
 
-		this.loadIDs();
 		const firstNotebookID = this.IDs.keys().next().value;
+		this.activeNotebookID = firstNotebookID;
 
 		this.loadNotes(firstNotebookID);
 	}
@@ -64,6 +72,58 @@ class Controller {
 
 			this.notebookCtrl.addItem(title, length, id);
 		});
+		// this.activeNotebook = id;
+	}
+
+	findIndexOfNote(notebookIDtoFind: number, noteIDtoFind: number) {
+		let resolvedNotebookIndex = 0;
+		let resolvedNoteIndex = 0;
+
+		for (const [indexNotebook, notebook] of this.data.entries()) {
+			if (notebook.id == notebookIDtoFind) {
+				resolvedNotebookIndex = indexNotebook;
+
+				for (const [noteIndex, note] of notebook.notesList.entries()) {
+					if (note.id == noteIDtoFind) {
+						resolvedNoteIndex = noteIndex;
+						break;
+					}
+				}
+				break;
+			}
+		}
+		return [resolvedNotebookIndex, resolvedNoteIndex];
+	}
+
+	loadNoteText(id: number) {
+		const [notebookID, noteID] = this.findIndexOfNote(this.activeNotebookID, id);
+
+		const text = this.data[notebookID].notesList[noteID].text;
+		const title = this.data[notebookID].notesList[noteID].title;
+
+		this.noteCtrl.writeNote(text, title);
+	}
+
+	eventsForNotesListItems() {
+		const firstNoteID = this.IDs.get(0);
+		const [notebookID, noteID] = this.findIndexOfNote(this.activeNotebookID, firstNoteID);
+
+		const text = this.data[notebookID].notesList[noteID].text;
+		const title = this.data[notebookID].notesList[noteID].title;
+
+		this.noteCtrl.writeNote(text, title);
+
+		this.notesCtrl.refreshItems();
+
+		const notesItemList = this.notesCtrl.getList();
+		const itemsGroup = notesItemList.map((noteItem) => {
+			const itemDiv = noteItem[this.notesCtrl.itemIndexes.item];
+			const id = noteItem[this.notesCtrl.itemIndexes.id];
+
+			itemDiv.addEventListener("click", () => {
+				this.loadNoteText(id);
+			});
+		});
 	}
 
 	eventsForNotebookListItems() {
@@ -81,46 +141,14 @@ class Controller {
 				this.loadNotes(id);
 				notebooksCtrl.makeActiveById(id);
 				notesCtrl.setTopText(notes[num].title);
+				this.activeNotebookID = id;
+
+				this.eventsForNotesListItems();
 			});
 		});
 	}
 }
 const a = new Controller();
+a.eventsForNotesListItems();
 
-// function notebooksToHTML(data: Array<any>) {
-// 	const notebooksCtrl = new NotebooksList();
-
-// 	notebooksCtrl.updateSaveCountDiv(data.length);
-
-// 	data.forEach((notebook) => {
-// 		const id = notebook.id;
-// 		const length = notebook.notesList.length;
-// 		const title = notebook.title;
-
-// 		notebooksCtrl.addItem(title, length, id);
-// 	});
-
-// 	notebooksCtrl.makeActive(0);
-// }
-
-// function notesToHTML(data: Array<any>, id: number) {
-// 	const notesCtrl = new NotesList();
-// 	notesCtrl.truncateItemList();
-
-// 	data.forEach((notebook) => {
-// 		if (notebook.id == id) {
-// 			notesCtrl.updateSaveCountDiv(notebook.notesList.length);
-
-// 			notebook.notesList.forEach((note: any) => {
-// 				notesCtrl.addItem(note.title, note.editDate, note.id);
-// 			});
-// 		}
-// 	});
-// 	notesCtrl.setTopText(notes[0].title);
-// }
-
-// notebooksToHTML(notes);
-
-// notesToHTML(notes, 1);
-
-// addEventToNotebookListItems();
+a.loadNoteText(1);

@@ -57,4 +57,10 @@
 			background-color: $grayDark !important;
 		}
 	}
+
+	&__text {
+		color: $dark;
+		margin: 2em;
+		line-height: 150%;
+	}
 }
